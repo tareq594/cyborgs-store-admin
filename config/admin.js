@@ -5,6 +5,6 @@ module.exports = {
 	apiBaseUrl:
 		process.env.API_BASE_URL || 'https://api.demo.store.cyborgstech.com/api/v1',
 	apiWebSocketUrl:
-		process.env.API_WEB_SOCKET_URL || 'https://api.demo.store.cyborgstech.com',
+		process.env.API_WEB_SOCKET_URL || 'wss://api.demo.store.cyborgstech.com/ws',
 	developerMode: process.env.DEVELOPER_MODE || true
 };
