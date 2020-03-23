@@ -4,6 +4,7 @@ module.exports = {
 	language: process.env.LANGUAGE || 'en',
 	apiBaseUrl:
 		process.env.API_BASE_URL || 'https://api.demo.store.cyborgstech.com/api/v1',
-	apiWebSocketUrl: process.env.API_WEB_SOCKET_URL || 'ws://89.40.12.209:8020',
+	apiWebSocketUrl:
+		process.env.API_WEB_SOCKET_URL || 'wss://ws.demo.store.cyborgstech.com',
 	developerMode: process.env.DEVELOPER_MODE || true
 };
