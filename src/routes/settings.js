@@ -21,10 +21,10 @@ import Smtp from 'modules/settings/smtp';
 import EmailTemplate from 'modules/settings/emailTemplates';
 import Checkout from 'modules/settings/checkout';
 import CheckoutFields from 'modules/settings/checkoutFields';
-import Redirects from 'modules/settings/redirects/list';
-import RedirectsEdit from 'modules/settings/redirects/edit';
-import Webhooks from 'modules/settings/webhooks/list';
-import WebhooksEdit from 'modules/settings/webhooks/edit';
+// import Redirects from 'modules/settings/redirects/list';
+// import RedirectsEdit from 'modules/settings/redirects/edit';
+// import Webhooks from 'modules/settings/webhooks/list';
+// import WebhooksEdit from 'modules/settings/webhooks/edit';
 
 const styles = {
 	link: {
@@ -114,7 +114,7 @@ const SettingsMenu = () => (
 				leftIcon={<FontIcon className="material-icons">get_app</FontIcon>}
 			/>
 		</NavLink>
-		<NavLink
+		{/* <NavLink
 			style={styles.link}
 			activeStyle={styles.linkActive}
 			to="/settings/redirects"
@@ -123,8 +123,8 @@ const SettingsMenu = () => (
 				primaryText={messages.redirects}
 				leftIcon={<FontIcon className="material-icons">swap_calls</FontIcon>}
 			/>
-		</NavLink>
-		<NavLink
+		</NavLink> */}
+		{/* <NavLink
 			style={styles.link}
 			activeStyle={styles.linkActive}
 			to="/settings/webhooks"
@@ -133,7 +133,7 @@ const SettingsMenu = () => (
 				primaryText={messages.webhooks}
 				leftIcon={<FontIcon className="material-icons">http</FontIcon>}
 			/>
-		</NavLink>
+		</NavLink> */}
 		<NavLink
 			style={styles.link}
 			activeStyle={styles.linkActive}
@@ -185,7 +185,7 @@ const Settings = ({ match }) => (
 					path="/settings/checkout/fields/:fieldName"
 					component={CheckoutFields}
 				/>
-				<Route path="/settings/redirects" exact component={Redirects} />
+				{/* <Route path="/settings/redirects" exact component={Redirects} />
 				<Route path="/settings/redirects/add" exact component={RedirectsEdit} />
 				<Route
 					path="/settings/redirects/:redirectId"
@@ -193,7 +193,7 @@ const Settings = ({ match }) => (
 				/>
 				<Route path="/settings/webhooks" exact component={Webhooks} />
 				<Route path="/settings/webhooks/add" exact component={WebhooksEdit} />
-				<Route path="/settings/webhooks/:webhookId" component={WebhooksEdit} />
+				<Route path="/settings/webhooks/:webhookId" component={WebhooksEdit} /> */}
 			</Switch>
 		</div>
 	</div>
