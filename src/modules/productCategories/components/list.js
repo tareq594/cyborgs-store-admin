@@ -122,7 +122,7 @@ export default class Categories extends React.Component {
 			showAll = false,
 			showRoot = false,
 			showManage = false,
-			showImport = true,
+			showImport = false,
 			rootName = messages.productCategories_root,
 			allName = messages.productCategories_all,
 			opened = false

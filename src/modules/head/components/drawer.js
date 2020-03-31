@@ -46,11 +46,11 @@ const menuItems = [
 		url: '/pages',
 		icon: 'description'
 	},
-	{
-		title: messages.files,
-		url: '/files',
-		icon: 'folder'
-	},
+	// {
+	// 	title: messages.files,
+	// 	url: '/files',
+	// 	icon: 'folder'
+	// },
 	{
 		title: '-',
 		url: 'settings'
