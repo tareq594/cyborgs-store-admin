@@ -55,16 +55,16 @@ const menuItems = [
 		title: '-',
 		url: 'settings'
 	},
-	{
-		title: messages.drawer_settings,
-		url: '/settings',
-		icon: 'settings'
-	},
-	{
-		title: messages.apps,
-		url: '/apps',
-		icon: 'apps'
-	},
+	// {
+	// 	title: messages.drawer_settings,
+	// 	url: '/settings',
+	// 	icon: 'settings'
+	// },
+	// {
+	// 	title: messages.apps,
+	// 	url: '/apps',
+	// 	icon: 'apps'
+	// },
 	{
 		title: messages.drawer_logout,
 		url: '/logout',
