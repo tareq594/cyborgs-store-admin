@@ -44,32 +44,33 @@ export default class LoginForm extends React.Component {
 		});
 		const email = this.state.email;
 		const password = this.state.password;
-		// Axios.post(`${settings.apiBaseUrl}/authorizeWithEmailAndPassword`, {
-		// 	email,
-		// 	password
-		// })
-		// 	.then(authorizeResponse => {
-		// 		console.log(authorizeResponse);
-		// 		this.setState({
-		// 			isFetching: false,
-		// 			isAuthorized: authorizeResponse.data.isAuthorized,
-		// 			// emailIsSent: authorizeResponse.json.sent,
-		// 			error: authorizeResponse.data.error
-		// 		});
-		// 		if (authorizeResponse.data.isAuthorized) {
-		// 			auth.AuthorisWithEmailAndPassword(authorizeResponse.data.token);
-		// 		}
-		// 	})
-		// 	.catch(error => {
-		// 		console.log("error");
-		// 		console.log(error);
-		// 		this.setState({
-		// 			isFetching: false,
-		// 			isAuthorized: false,
-		// 			// emailIsSent: false,
-		// 			error
-		// 		});
-		// 	});
+		Axios.post(`${settings.apiBaseUrl}/authorizeWithEmailAndPassword`, {
+			email,
+			password
+		})
+			.then(authorizeResponse => {
+				console.log('authorizeResponse');
+				console.log(authorizeResponse);
+				this.setState({
+					isFetching: false,
+					isAuthorized: authorizeResponse.data.isAuthorized,
+					// emailIsSent: authorizeResponse.json.sent,
+					error: authorizeResponse.data.error
+				});
+				if (authorizeResponse.data.isAuthorized) {
+					auth.AuthorisWithEmailAndPassword(authorizeResponse.data.token);
+				}
+			})
+			.catch(error => {
+				console.log('error');
+				console.log(error);
+				this.setState({
+					isFetching: false,
+					isAuthorized: false,
+					// emailIsSent: false,
+					error
+				});
+			});
 
 		// CezerinClient.authorize(settings.apiBaseUrl, this.state.email)
 		// 	.then(authorizeResponse => {
