@@ -1,16 +1,7 @@
-import RestClient from './restClient';
-
-export default class CyborgsApiClient extends RestClient {
-	static authorizeWithEmailAndPassword = (baseUrl, email, password) => {
-		const config = {
-			method: 'post',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ email, password })
-		};
-		return fetch(`${baseUrl}/authorizeWithEmailAndPassword`, config).then(
-			RestClient.returnStatusAndJson
-		);
-	};
-}
+// import Axios from 'axios';
+// export default class CyborgsApiClient {
+// 	static authorizeWithEmailAndPassword = (baseUrl, email, password) => {
+// 		return Axios.post(`${baseUrl}/authorizeWithEmailAndPassword`, { email, password })
+// 		.then();
+// 	};
+// }

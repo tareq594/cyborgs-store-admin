@@ -1,7 +1,8 @@
 import React from 'react';
 import messages from 'lib/text';
-import CezerinClient from 'cezerin2-client';
-import CyborgsApiClient from '../lib/cyborgsClient/cyborgsClient';
+import Axios from 'axios';
+// import CezerinClient from 'cezerin2-client';
+// import CyborgsApiClient from '../lib/cyborgsClient/cyborgsClient';
 import settings from 'lib/settings';
 import * as auth from 'lib/auth';
 
@@ -42,23 +43,24 @@ export default class LoginForm extends React.Component {
 			error: null
 		});
 
-		CyborgsApiClient.authorizeWithEmailAndPassword(
-			settings.apiBaseUrl,
-			this.state.email,
-			this.password
-		)
+		Axios.post(`${settings.apiBaseUrl}/authorizeWithEmailAndPassword`, {
+			email,
+			password
+		})
 			.then(authorizeResponse => {
+				console.log(authorizeResponse);
 				this.setState({
 					isFetching: false,
-					isAuthorized: authorizeResponse.json.isAuthorized,
+					isAuthorized: authorizeResponse.data.isAuthorized,
 					// emailIsSent: authorizeResponse.json.sent,
-					error: authorizeResponse.json.error
+					error: authorizeResponse.data.error
 				});
-				if (authorizeResponse.json.isAuthorized) {
-					auth.AuthorisWithEmailAndPassword(authorizeResponse.json.token);
+				if (authorizeResponse.data.isAuthorized) {
+					auth.AuthorisWithEmailAndPassword(authorizeResponse.data.token);
 				}
 			})
 			.catch(error => {
+				console.log(error);
 				this.setState({
 					isFetching: false,
 					isAuthorized: false,
