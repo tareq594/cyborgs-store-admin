@@ -1,6 +1,6 @@
-import RestClientClient from './restClient';
+import RestClient from './restClient';
 
-export default class CyborgsApiClient extends RestClientClient {
+export default class CyborgsApiClient extends RestClient {
 	static authorizeWithEmailAndPassword = (baseUrl, email, password) => {
 		const config = {
 			method: 'post',
