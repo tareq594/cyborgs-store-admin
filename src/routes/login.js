@@ -55,7 +55,7 @@ export default class LoginForm extends React.Component {
 					error: authorizeResponse.json.error
 				});
 				if (authorizeResponse.json.isAuthorized) {
-					auth.AuthorisWithEmailAndPassword(authorizeResponse.json);
+					auth.AuthorisWithEmailAndPassword(authorizeResponse.json.token);
 				}
 			})
 			.catch(error => {
@@ -95,7 +95,14 @@ export default class LoginForm extends React.Component {
 	componentDidMount() {}
 
 	render() {
-		const { email, isFetching, isAuthorized, emailIsSent, error } = this.state;
+		const {
+			email,
+			password,
+			isFetching,
+			isAuthorized,
+			emailIsSent,
+			error
+		} = this.state;
 
 		let response = null;
 		if (isFetching) {
