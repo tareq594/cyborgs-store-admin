@@ -46,6 +46,7 @@
   "discardDraft": "Discard draft",
   "actions_loadMore": "Load more",
   "messages_saving": "Saving...",
+  "loginSuccess":"login success",
   "messages_saved": "Saved",
   "messages_loading": "Loading...",
   "messages_uploading": "Uploading...",

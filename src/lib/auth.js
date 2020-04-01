@@ -20,6 +20,10 @@ export const validateCurrentToken = () => {
 		if (!isCurrentTokenValid()) {
 			location.replace(LOGIN_PATH);
 		}
+	} else {
+		if (isCurrentTokenValid()) {
+			location.replace(HOME_PATH);
+		}
 	}
 };
 
@@ -28,7 +32,6 @@ export const checkTokenFromUrl = () => {
 		const token = getParameterByName('token');
 		if (token && token !== '') {
 			const tokenData = parseJWT(token);
-
 			if (tokenData) {
 				const expiration_date = tokenData.exp * 1000;
 				if (expiration_date > Date.now()) {
@@ -53,6 +56,19 @@ const parseJWT = jwt => {
 		return tokenData;
 	} catch (e) {
 		return null;
+	}
+};
+
+export const AuthorisWithEmailAndPassword = token => {
+	if (token && token !== '') {
+		const tokenData = parseJWT(token);
+		if (tokenData) {
+			const expiration_date = tokenData.exp * 1000;
+			if (expiration_date > Date.now()) {
+				saveToken({ token, email: tokenData.email, expiration_date });
+				location.replace(HOME_PATH);
+			}
+		}
 	}
 };
 

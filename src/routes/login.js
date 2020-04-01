@@ -1,6 +1,7 @@
 import React from 'react';
 import messages from 'lib/text';
 import CezerinClient from 'cezerin2-client';
+import CyborgsApiClient from '../lib/cyborgsClient/cyborgsClient';
 import settings from 'lib/settings';
 import * as auth from 'lib/auth';
 
@@ -41,28 +42,54 @@ export default class LoginForm extends React.Component {
 			error: null
 		});
 
-		CezerinClient.authorize(settings.apiBaseUrl, this.state.email)
+		CyborgsApiClient.authorizeWithEmailAndPassword(
+			settings.apiBaseUrl,
+			this.state.email,
+			this.password
+		)
 			.then(authorizeResponse => {
 				this.setState({
 					isFetching: false,
-					isAuthorized: false,
-					emailIsSent: authorizeResponse.json.sent,
+					isAuthorized: authorizeResponse.json.isAuthorized,
+					// emailIsSent: authorizeResponse.json.sent,
 					error: authorizeResponse.json.error
 				});
+				if (authorizeResponse.json.isAuthorized) {
+					auth.AuthorisWithEmailAndPassword(authorizeResponse.json);
+				}
 			})
 			.catch(error => {
 				this.setState({
 					isFetching: false,
 					isAuthorized: false,
-					emailIsSent: false,
+					// emailIsSent: false,
 					error
 				});
 			});
+
+		// CezerinClient.authorize(settings.apiBaseUrl, this.state.email)
+		// 	.then(authorizeResponse => {
+		// 		this.setState({
+		// 			isFetching: false,
+		// 			isAuthorized: false,
+		// 			emailIsSent: authorizeResponse.json.sent,
+		// 			error: authorizeResponse.json.error
+		// 		});
+		// 	})
+		// 	.catch(error => {
+		// 		this.setState({
+		// 			isFetching: false,
+		// 			isAuthorized: false,
+		// 			emailIsSent: false,
+		// 			error
+		// 		});
+		// 	});
 	};
 
 	componentWillMount() {
 		// todo check if stored token valid
-		auth.checkTokenFromUrl();
+		auth.validateCurrentToken();
+		// auth.checkTokenFromUrl();
 	}
 
 	componentDidMount() {}
@@ -75,11 +102,11 @@ export default class LoginForm extends React.Component {
 			response = (
 				<div className="loginSuccessResponse">{messages.messages_loading}</div>
 			);
-		} else if (emailIsSent) {
+		} else if (isAuthorized) {
 			response = (
-				<div className="loginSuccessResponse">{messages.loginLinkSent}</div>
+				<div className="loginSuccessResponse">{messages.loginSuccess}</div>
 			);
-		} else if (emailIsSent === false && error) {
+		} else if (isAuthorized === false && error) {
 			response = <div className="loginErrorResponse">{error}</div>;
 		}
 
@@ -93,7 +120,17 @@ export default class LoginForm extends React.Component {
 							<TextField
 								type="email"
 								value={email}
-								onChange={this.handleChange}
+								onChange={event => this.handleChange(event, 'email')}
+								onKeyPress={this.handleKeyPress}
+								label={messages.email}
+								fullWidth
+								hintStyle={{ width: '100%' }}
+								hintText={messages.email}
+							/>
+							<TextField
+								type="password"
+								value={password}
+								onChange={event => this.handleChange(event, 'password')}
 								onKeyPress={this.handleKeyPress}
 								label={messages.email}
 								fullWidth
@@ -104,7 +141,7 @@ export default class LoginForm extends React.Component {
 						<RaisedButton
 							label={messages.loginButton}
 							primary
-							disabled={isFetching || emailIsSent}
+							disabled={isFetching || isAuthorized}
 							onClick={this.handleSubmit}
 						/>
 						{response}
