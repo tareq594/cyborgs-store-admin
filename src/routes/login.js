@@ -142,13 +142,18 @@ export default class LoginForm extends React.Component {
 								label={messages.email}
 								fullWidth
 								hintStyle={{ width: '100%' }}
-								hintText={messages.email}
+								hintText={messages.password}
 							/>
 						</div>
 						<RaisedButton
 							label={messages.loginButton}
 							primary
-							disabled={isFetching || isAuthorized}
+							disabled={
+								isFetching ||
+								isAuthorized ||
+								email.length < 6 ||
+								password.length < 6
+							}
 							onClick={this.handleSubmit}
 						/>
 						{response}

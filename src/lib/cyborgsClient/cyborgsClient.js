@@ -1,4 +1,4 @@
-import RestClientClient from 'cezerin2-client/lib/restClient';
+import RestClientClient from 'cezerin2-client/src/restClient';
 
 export default class CyborgsApiClient extends RestClientClient {
 	static authorizeWithEmailAndPassword = (baseUrl, email, password) => {
