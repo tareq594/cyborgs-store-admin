@@ -13,6 +13,7 @@ export default class LoginForm extends React.Component {
 		super(props);
 		this.state = {
 			email: localStorage.getItem('dashboard_email') || '',
+			password: '',
 			isFetching: false,
 			isAuthorized: false,
 			emailIsSent: false,
@@ -20,9 +21,9 @@ export default class LoginForm extends React.Component {
 		};
 	}
 
-	handleChange = event => {
+	handleChange = (event, field) => {
 		this.setState({
-			email: event.target.value
+			[field]: event.target.value
 		});
 	};
 
@@ -60,6 +61,7 @@ export default class LoginForm extends React.Component {
 	};
 
 	componentWillMount() {
+		// todo check if stored token valid
 		auth.checkTokenFromUrl();
 	}
 
