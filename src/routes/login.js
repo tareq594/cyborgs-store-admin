@@ -42,7 +42,8 @@ export default class LoginForm extends React.Component {
 			emailIsSent: false,
 			error: null
 		});
-
+		const email = this.state.email;
+		const password = this.state.password;
 		Axios.post(`${settings.apiBaseUrl}/authorizeWithEmailAndPassword`, {
 			email,
 			password
