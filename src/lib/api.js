@@ -1,4 +1,4 @@
-import CezerinClient from 'cezerin2-client';
+import CezerinClient from 'cezerin2-client/src/index';
 import settings from 'lib/settings';
 
 let api = null;
