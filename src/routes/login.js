@@ -14,7 +14,7 @@ export default class LoginForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: localStorage.getItem('dashboard_email') || '',
+			email: '',
 			password: '',
 			isFetching: false,
 			isAuthorized: false,
